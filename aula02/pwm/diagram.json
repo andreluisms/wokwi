@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "author": "Andre Luis Meneses Silva",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+      {
+        "type": "wokwi-resistor",
+        "id": "r1",
+        "top": -72.34,
+        "left": -6.26,
+        "rotate": 90,
+        "attrs": {}
+      },
+      {
+        "type": "wokwi-led",
+        "id": "led1",
+        "top": -157.3,
+        "left": 8.44,
+        "attrs": { "color": "red" }
+      }
+    ],
+    "connections": [
+      [ "r1:1", "led1:C", "blue", [ "h0" ] ],
+      [ "r1:2", "uno:GND.1", "blue", [ "h0" ] ],
+      [ "uno:11", "led1:A", "red", [ "v0" ] ]
+    ],
+    "dependencies": {}
+  }
