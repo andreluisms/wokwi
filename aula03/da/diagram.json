@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "author": "Andre Luis Meneses Silva",
+    "editor": "wokwi",
+    "parts": [
+      { "type": "wokwi-arduino-uno", "id": "uno", "top": 180.51, "left": 3.72, "attrs": {} },
+      {
+        "type": "wokwi-logic-analyzer",
+        "id": "logic1",
+        "top": -303.51,
+        "left": 387.9,
+        "rotate": 270,
+        "attrs": {}
+      },
+      {
+        "type": "wokwi-gate-and-2",
+        "id": "and1",
+        "top": -98.3,
+        "left": 315.22,
+        "rotate": 270,
+        "attrs": {}
+      },
+      {
+        "type": "wokwi-gate-xor-2",
+        "id": "xor1",
+        "top": -100.96,
+        "left": 359.26,
+        "rotate": 270,
+        "attrs": {}
+      },
+      {
+        "type": "wokwi-gate-or-2",
+        "id": "or1",
+        "top": -96.93,
+        "left": 259.61,
+        "rotate": 270,
+        "attrs": {}
+      },
+      {
+        "type": "wokwi-gate-nand-2",
+        "id": "nand1",
+        "top": -96.21,
+        "left": 201.19,
+        "rotate": 270,
+        "attrs": {}
+      },
+      {
+        "type": "wokwi-mux-2",
+        "id": "mux1",
+        "top": -101.11,
+        "left": 132.11,
+        "rotate": 270,
+        "attrs": {}
+      }
+    ],
+    "connections": [
+      [ "uno:GND.1", "logic1:GND", "black", [ "v-13.27", "h385.81", "v-354.75" ] ],
+      [ "uno:13", "logic1:D7", "orange", [ "v-63.76", "h366.62", "v-304.26" ] ],
+      [ "uno:12", "logic1:D6", "blue", [ "v-70.58", "h348.04", "v-297.44" ] ],
+      [ "uno:12", "xor1:B", "blue", [ "v-77.94", "h275.13", "v-142.03" ] ],
+      [ "uno:12", "and1:B", "blue", [ "v-84.56", "h231.3" ] ],
+      [ "uno:12", "or1:B", "blue", [ "v-91.93", "h175.69" ] ],
+      [ "uno:12", "nand1:B", "blue", [ "v-98.55", "h117.27" ] ],
+      [ "uno:12", "mux1:B", "blue", [ "v-107.39", "h43.19" ] ],
+      [ "uno:13", "xor1:A", "orange", [ "v-56.59", "h273.74" ] ],
+      [ "uno:13", "and1:A", "orange", [ "v-49.96", "h221.6" ] ],
+      [ "uno:13", "or1:A", "orange", [ "v-41.87", "h165.99" ] ],
+      [ "uno:13", "nand1:A", "orange", [ "v-34.51", "h107.57" ] ],
+      [ "uno:13", "mux1:A", "orange", [ "v-25.67", "h33.49" ] ],
+      [ "uno:11", "mux1:SEL", "purple", [ "v-23.46", "h53.62", "v-239.66" ] ],
+      [ "uno:11", "logic1:D5", "purple", [ "v-17.54", "h328.39", "v-350.48" ] ],
+      [ "xor1:OUT", "logic1:D4", "green", [ "h62.15", "v-52.05" ] ],
+      [ "and1:OUT", "logic1:D3", "green", [ "v-7.74", "h98.4", "v-46.97" ] ],
+      [ "or1:OUT", "logic1:D2", "green", [ "v-13.56", "h143.04" ] ],
+      [ "nand1:OUT", "logic1:D1", "green", [ "v-19.84", "h191.86" ] ],
+      [ "mux1:OUT", "logic1:D0", "green", [ "v-25.5", "h256.34" ] ]
+    ],
+    "dependencies": {}
+  }
