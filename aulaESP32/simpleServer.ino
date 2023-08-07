@@ -6,8 +6,8 @@
 #include <WiFi.h> 
 #define LED_PIN 2
 
-const char* ssid     = "milu";
-const char* password = "al123456";
+const char* ssid     = "ssid";
+const char* password = "password";
 
 // 1. Qual o papel de um objeto do tipo WiFiServer?
 WiFiServer server(80);
