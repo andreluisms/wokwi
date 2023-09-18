@@ -1,0 +1,482 @@
+wsmlVariant _"http://www.wsmo.org/wsml/wsml-syntax/wsml-flight"
+namespace { _"http://ontologies.sti2.at/"
+, 
+     wsml _"http://www.wsmo.org/wsml/wsml-syntax#", 
+     dc _"http://purl.org/dc/elements/1.1/" }
+
+ontology simpsonsptbr
+
+
+axiom principles_work_too
+     definedBy 
+          ?x[diretorDe hasValue ?y] memberOf personagem
+implies
+?x[possuiLocalDeTrabalho hasValue ?y]. 
+
+axiom conjuges_estao_apaixonados
+     definedBy 
+          ?x[possuiConjuge hasValue ?y] memberOf personagem
+implies
+?x[apaixonadoPor hasValue ?y]. 
+
+concept genero
+
+concept ator
+     possuiNome ofType _string
+     possuiGenero ofType genero
+
+concept lugar
+     possuiNome ofType _string
+
+concept cidade subConceptOf lugar
+     possuiPrefeito ofType personagem
+     possuiChefeDePolicia ofType personagem
+
+concept localdetrabalho subConceptOf lugar
+     possuiProprietario ofType personagem
+     possuiLocalidade ofType cidade
+
+concept escola subConceptOf lugar
+     possuiDiretor ofType personagem
+     possuiLocalidade ofType cidade
+
+concept igreja subConceptOf lugar
+     possuiReverendo ofType personagem
+     possuiLocalidade ofType cidade
+
+concept personagem
+     possuiNome ofType _string
+     possuiGenero ofType genero
+     possuiAtor ofType ator
+     possuiConjuge ofType personagem
+     possuiFilho ofType personagem
+     possuiPais ofType personagem
+     possuiIrmaos ofType personagem
+     possuiAmigos ofType personagem
+     possuiVizinhos ofType personagem
+     possuiBordao ofType _string
+     apaixonadoPor ofType personagem
+     ehClienteDe ofType localdetrabalho
+     possuiLocalDeTrabalho ofType lugar
+     oraEm ofType igreja
+     diretorDe ofType escola
+     frequenta ofType escola
+     ehDonoDe ofType localdetrabalho
+     prefeitoDe ofType cidade
+     chefeDePoliciaDe ofType cidade
+     reverendoDe ofType igreja
+
+instance masculino memberOf genero
+
+instance feminino memberOf genero
+
+instance dan_castellanata memberOf ator
+     possuiNome hasValue "Dan Castellaneta"
+     possuiGenero hasValue masculino
+
+instance julie_kavner memberOf ator
+     possuiNome hasValue "Julie Kavner"
+     possuiGenero hasValue feminino
+
+instance yeardley_smith memberOf ator
+     possuiNome hasValue "Yeardley Smith"
+     possuiGenero hasValue feminino
+
+instance nancy_cartwright memberOf ator
+     possuiNome hasValue "Nancy Cartwright"
+     possuiGenero hasValue feminino
+
+instance hank_azaria memberOf ator
+     possuiNome hasValue "Hank Azaria"
+     possuiGenero hasValue masculino
+
+instance harry_shearer memberOf ator
+     possuiNome hasValue "Harry Shearer"
+     possuiGenero hasValue masculino
+
+instance marcia_wallace memberOf ator
+     possuiNome hasValue "Marcia Wallace"
+     possuiGenero hasValue feminino
+
+instance pamela_hayden memberOf ator
+     possuiNome hasValue "Pamela Hayden"
+     possuiGenero hasValue feminino
+
+instance tress_macneille memberOf ator
+     nonFunctionalProperties
+          dc#title hasValue "Tress MacNeille"
+     endNonFunctionalProperties
+     possuiNome hasValue "Tress MacNeille"
+     possuiGenero hasValue feminino
+
+instance maggie_roswell memberOf ator
+     possuiNome hasValue "Maggie Roswell"
+     possuiGenero hasValue feminino
+
+instance doris_grau memberOf ator
+     possuiNome hasValue "Doris Grau"
+     possuiGenero hasValue feminino
+
+instance kelsey_grammar memberOf ator
+     possuiNome hasValue "Kelsey Grammar"
+     possuiGenero hasValue masculino
+
+instance springfield memberOf cidade
+     possuiNome hasValue "Springfield"
+     possuiPrefeito hasValue joe_quimby
+     possuiChefeDePolicia hasValue chief_clancy_wiggum
+
+instance shelbyville memberOf cidade
+     possuiNome hasValue "Shelbyville"
+
+instance nuclear_plant memberOf localdetrabalho
+     possuiNome hasValue "Springfield Nuclear Plant"
+     possuiProprietario hasValue monty_burns
+     possuiLocalidade hasValue springfield
+
+instance kwik_e_mart memberOf localdetrabalho
+     possuiNome hasValue "Kwik E Mart"
+     possuiProprietario hasValue apu_napossuiapeemapetilon
+     possuiLocalidade hasValue springfield
+
+instance channel_6 memberOf localdetrabalho
+     possuiNome hasValue "Channel 6"
+     possuiLocalidade hasValue springfield
+
+instance moes_tavern memberOf localdetrabalho
+     possuiNome hasValue "Moe's Tavern"
+     possuiProprietario hasValue moe_szyslak
+     possuiLocalidade hasValue springfield
+
+instance police_station memberOf localdetrabalho
+     possuiNome hasValue "Springfield Police Station"
+     possuiLocalidade hasValue springfield
+
+instance springfield_elementary memberOf { escola, localdetrabalho} 
+     possuiNome hasValue "Springfield Elementary"
+     possuiDiretor hasValue seymour_skinner
+     possuiLocalidade hasValue springfield
+
+instance springfield_church memberOf igreja
+     possuiNome hasValue "First Church of Springfield"
+     possuiReverendo hasValue reverant_lovejoy
+     possuiLocalidade hasValue springfield
+
+instance homer_simpson memberOf personagem
+     possuiNome hasValue "Homer J Simpson"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue dan_castellanata
+     possuiConjuge hasValue marge_simpson
+     possuiPais hasValue abe_simpson
+     possuiFilho hasValue {bart_simpson, lisa_simpson, maggie_simpson }
+     possuiAmigos hasValue {barney_gumble, lenny, carl }
+     possuiVizinhos hasValue {ned_flanders, maude_flanders, todd_flanders }
+     possuiBordao hasValue "D'oh"
+     ehClienteDe hasValue {kwik_e_mart, moes_tavern }
+     possuiLocalDeTrabalho hasValue nuclear_plant
+     oraEm hasValue springfield_church
+
+instance marge_simpson memberOf personagem
+     possuiNome hasValue "Marge Simpson"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue julie_kavner
+     possuiConjuge hasValue homer_simpson
+     possuiPais hasValue grandma_bouvier
+     possuiFilho hasValue {bart_simpson, lisa_simpson, maggie_simpson }
+     possuiIrmaos hasValue {patty_bouvier, selma_bouvier }
+     possuiVizinhos hasValue {ned_flanders, maude_flanders, todd_flanders }
+     possuiBordao hasValue "Hmmmmmm"
+     ehClienteDe hasValue kwik_e_mart
+     oraEm hasValue springfield_church
+
+instance lisa_simpson memberOf personagem
+     possuiNome hasValue "Lisa Simpson"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue yeardley_smith
+     possuiPais hasValue {homer_simpson, marge_simpson }
+     possuiIrmaos hasValue {bart_simpson, maggie_simpson }
+     possuiVizinhos hasValue {ned_flanders, maude_flanders, todd_flanders }
+     frequenta hasValue springfield_elementary
+     oraEm hasValue springfield_church
+
+instance bart_simpson memberOf personagem
+     possuiNome hasValue "Bart Simpson"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue nancy_cartwright
+     possuiPais hasValue {homer_simpson, marge_simpson }
+     possuiIrmaos hasValue {lisa_simpson, maggie_simpson }
+     possuiAmigos hasValue milhouse_van_houten
+     possuiVizinhos hasValue {ned_flanders, maude_flanders, todd_flanders }
+     possuiBordao hasValue {"I'm Bart Simpson, who the hell are you", "Dont have a cow man", "Aye carumba" }
+     frequenta hasValue springfield_elementary
+     oraEm hasValue springfield_church
+
+instance maggie_simpson memberOf personagem
+     possuiNome hasValue "Maggie Simpson"
+     possuiGenero hasValue feminino
+     possuiPais hasValue {homer_simpson, marge_simpson }
+     possuiIrmaos hasValue {bart_simpson, lisa_simpson }
+     possuiVizinhos hasValue {ned_flanders, maude_flanders, todd_flanders }
+     oraEm hasValue springfield_church
+
+instance abe_simpson memberOf personagem
+     possuiNome hasValue "Abraham Simpson"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue dan_castellanata
+     possuiFilho hasValue homer_simpson
+
+instance grandma_bouvier memberOf personagem
+     possuiNome hasValue "Grandma Bouvier"
+     possuiGenero hasValue feminino
+     possuiFilho hasValue {marge_simpson, patty_bouvier, selma_bouvier }
+
+instance patty_bouvier memberOf personagem
+     possuiNome hasValue "Patty Bouvier"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue julie_kavner
+     possuiPais hasValue grandma_bouvier
+     possuiIrmaos hasValue {marge_simpson, selma_bouvier }
+
+instance selma_bouvier memberOf personagem
+     possuiNome hasValue "Selma Bouvier"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue julie_kavner
+     possuiPais hasValue grandma_bouvier
+     possuiIrmaos hasValue {marge_simpson, patty_bouvier }
+
+instance milhouse_van_houten memberOf personagem
+     possuiNome hasValue "Milhouse van Houten"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue pamela_hayden
+     possuiPais hasValue {kirk_van_houten, louanne_van_houten }
+     possuiAmigos hasValue bart_simpson
+     frequenta hasValue springfield_elementary
+     oraEm hasValue springfield_church
+
+instance kirk_van_houten memberOf personagem
+     possuiNome hasValue "Kirk van Houten"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue hank_azaria
+     possuiFilho hasValue milhouse_van_houten
+     oraEm hasValue springfield_church
+
+instance louanne_van_houten memberOf personagem
+     possuiNome hasValue "Louanne van Houten"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue maggie_roswell
+     possuiFilho hasValue milhouse_van_houten
+     oraEm hasValue springfield_church
+
+instance ned_flanders memberOf personagem
+     possuiNome hasValue "Ned Flanders"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     possuiVizinhos hasValue {homer_simpson, marge_simpson, bart_simpson, lisa_simpson, maggie_simpson }
+     oraEm hasValue springfield_church
+
+instance maude_flanders memberOf personagem
+     possuiNome hasValue "Maude Flanders"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue maggie_roswell
+     possuiVizinhos hasValue {homer_simpson, marge_simpson, bart_simpson, lisa_simpson, maggie_simpson }
+     oraEm hasValue springfield_church
+
+instance rod_flanders memberOf personagem
+     possuiNome hasValue "Rod Flanders"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue pamela_hayden
+     possuiVizinhos hasValue {homer_simpson, marge_simpson, bart_simpson, lisa_simpson, maggie_simpson }
+     frequenta hasValue springfield_elementary
+     oraEm hasValue springfield_church
+
+instance todd_flanders memberOf personagem
+     possuiNome hasValue "Todd Flanders"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue nancy_cartwright
+     possuiVizinhos hasValue {homer_simpson, marge_simpson, bart_simpson, lisa_simpson, maggie_simpson }
+     frequenta hasValue springfield_elementary
+     oraEm hasValue springfield_church
+
+instance joe_quimby memberOf personagem
+     possuiNome hasValue "'Diamond' Joe Quimby"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue dan_castellanata
+     prefeitoDe hasValue springfield
+
+instance monty_burns memberOf personagem
+     possuiNome hasValue "Charles Montgomery Burns"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     ehDonoDe hasValue nuclear_plant
+
+instance waylon_smithers memberOf personagem
+     possuiNome hasValue "Waylon Smithers"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     possuiLocalDeTrabalho hasValue nuclear_plant
+     apaixonadoPor hasValue monty_burns
+
+instance apu_napossuiapeemapetilon memberOf personagem
+     possuiNome hasValue "Apu Napossuiapeemapetilon"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue hank_azaria
+     ehDonoDe hasValue kwik_e_mart
+
+instance moe_szyslak memberOf personagem
+     possuiNome hasValue "Moe Szyslak"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue hank_azaria
+     ehDonoDe hasValue moes_tavern
+     oraEm hasValue springfield_church
+
+instance krusty_the_clown memberOf personagem
+     possuiNome hasValue "Krusty The Clown"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue dan_castellanata
+     possuiLocalDeTrabalho hasValue channel_6
+
+instance kent_brockman memberOf personagem
+     possuiNome hasValue "Kent Brockman"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     possuiLocalDeTrabalho hasValue channel_6
+
+instance bumblebee_man memberOf personagem
+     possuiNome hasValue "Bumblebee Man"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue hank_azaria
+     possuiLocalDeTrabalho hasValue channel_6
+
+instance sideshow_bob memberOf personagem
+     possuiNome hasValue "Sideshow Bob"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue kelsey_grammar
+     possuiLocalDeTrabalho hasValue channel_6
+
+instance sideshow_mel memberOf personagem
+     possuiNome hasValue "Sideshow Mel"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue dan_castellanata
+     possuiLocalDeTrabalho hasValue channel_6
+
+instance barney_gumble memberOf personagem
+     possuiNome hasValue "Barney Gumble"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue dan_castellanata
+     possuiAmigos hasValue {homer_simpson, lenny, carl }
+     ehClienteDe hasValue moes_tavern
+
+instance lenny memberOf personagem
+     possuiNome hasValue "Lenny"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     possuiAmigos hasValue {homer_simpson, carl, barney_gumble }
+     ehClienteDe hasValue moes_tavern
+     possuiLocalDeTrabalho hasValue nuclear_plant
+     oraEm hasValue springfield_church
+
+instance carl memberOf personagem
+     possuiNome hasValue "Carl"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue hank_azaria
+     possuiAmigos hasValue {homer_simpson, lenny, barney_gumble }
+     ehClienteDe hasValue moes_tavern
+     possuiLocalDeTrabalho hasValue nuclear_plant
+     oraEm hasValue springfield_church
+
+instance nelson_muntz memberOf personagem
+     possuiNome hasValue "Nelson Muntz"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue nancy_cartwright
+     frequenta hasValue springfield_elementary
+
+instance jimbo_jones memberOf personagem
+     possuiNome hasValue "Jimbo Jones"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue pamela_hayden
+     frequenta hasValue springfield_elementary
+
+instance agnes_skinner memberOf personagem
+     possuiNome hasValue "Agnes Skinner"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue tress_macneille
+     possuiFilho hasValue seymour_skinner
+     oraEm hasValue springfield_church
+
+instance seymour_skinner memberOf personagem
+     possuiNome hasValue "Seymour Skinner"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     possuiPais hasValue agnes_skinner
+     diretorDe hasValue springfield_elementary
+     oraEm hasValue springfield_church
+
+instance edna_krabappel memberOf personagem
+     possuiNome hasValue "Edna Krabappel"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue marcia_wallace
+     possuiLocalDeTrabalho hasValue springfield_elementary
+     oraEm hasValue springfield_church
+
+instance groundskeeper_willie memberOf personagem
+     possuiNome hasValue "Groundskeeper Willie"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue dan_castellanata
+     possuiLocaldeTrabalho hasValue springfield_elementary
+
+instance otto_mann memberOf personagem
+     possuiNome hasValue "Otto Mann"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     possuiLocaldeTrabalho hasValue springfield_elementary
+
+instance lunchlady_doris memberOf personagem
+     possuiNome hasValue "Lunchlady Doris"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue doris_grau
+     possuiLocaldeTrabalho hasValue springfield_elementary
+
+instance miss_hoover memberOf personagem
+     possuiNome hasValue "Miss Hoover"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue maggie_roswell
+     possuiLocaldeTrabalho hasValue springfield_elementary
+
+instance reverant_lovejoy memberOf personagem
+     possuiNome hasValue "Reverant Lovejoy"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue harry_shearer
+     possuiConjuge hasValue helen_lovejoy
+     reverendoDe hasValue springfield_church
+
+instance helen_lovejoy memberOf personagem
+     possuiNome hasValue "Helen Lovejoy"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue maggie_roswell
+     possuiConjuge hasValue reverant_lovejoy
+
+instance chief_clancy_wiggum memberOf personagem
+     possuiNome hasValue "Chief Clancy Wiggum"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue hank_azaria
+     possuiConjuge hasValue sarah_wiggum
+     possuiFilho hasValue ralph_wiggum
+     possuiLocaldeTrabalho hasValue police_station
+     oraEm hasValue springfield_church
+     chefeDePoliciaDe hasValue springfield
+
+instance sarah_wiggum memberOf personagem
+     possuiNome hasValue "Sarah Wiggum"
+     possuiGenero hasValue feminino
+     possuiAtor hasValue pamela_hayden
+     possuiConjuge hasValue chief_clancy_wiggum
+     possuiFilho hasValue ralph_wiggum
+     oraEm hasValue springfield_church
+
+instance ralph_wiggum memberOf personagem
+     possuiNome hasValue "Ralph Wiggum"
+     possuiGenero hasValue masculino
+     possuiAtor hasValue nancy_cartwright
+     possuiPais hasValue {chief_clancy_wiggum, sarah_wiggum }
+     atende hasValue springfield_elementary
+     oraEm hasValue springfield_church

@@ -1,0 +1,48 @@
+Consulta 1
+-------
+
+Para encontrar todos os alunos e o diretor da escola que frequentam:
+
+?crianca[frequenta hasValue ?escola] and ?diretor[diretorDe hasValue ?escola]
+
+Consulta 2
+-------
+
+Para encontrar todas as pessoas que trabalham em springfield_elementary:
+
+?funcionario[possuiLocalDeTrabalho hasValue springfield_elementary]
+
+Nota: por causa do axioma priniciples_work_too, a instância seymour_skinner
+está incluído no conjunto de resultados mesmo que ele não tenha hasWorkingPlace
+definido explicitamente como springfield_elementary
+
+Consulta 3
+-------
+
+Para saber quem é o reverendo da igreja que cada personagem frequenta:
+
+?fiel[oraEm hasValue ?church] and ?reverendo[reverendoDe hasValue ?igreja]
+
+Consulta 4
+-------
+
+Para encontrar todos os personagens para os quais Dan Castellanata faz as vozes nos Simpsons:
+
+?personagem[possuiAtor hasValue dan_castellanata]
+
+Consulta 5
+-------
+
+Para descobrir quem está apaixonado por quem no mundo dos Simpsons:
+
+?personagem1[apaixonadoPor hasValue ?personagem2]
+
+Nota: o único personagem que possui um valor explícito para o atributo inLoveWith é
+a instância waylon_smithers. Os outros resultados são devidos ao axioma spouses_are_in_love axiom.
+
+Consulta 6
+-------
+
+Para encontrar todos os atores que interpretam personagens do sexo oposto:
+
+?ator[possuiGenero hasValue ?generoAtor] memberOf ator and ?personagem[possuiGenero hasValue ?generoPersonagem] memberOf personagem and ?personagem[possuiAtor hasValue ?ator] and ?generoAtor != ?generoPersonagem

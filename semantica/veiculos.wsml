@@ -1,0 +1,68 @@
+wsmlVariant _"http://www.wsmo.org/wsml/wsml-syntax/wsml-flight"
+namespace { _"http://www.sti-innsbruck.at/ontologies/veiculo#"}
+
+ontology OntologiaVeiculo
+
+concept Veiculo
+	possuiPneus ofType _integer
+	possuiMotor ofType _boolean
+
+concept Automovel subConceptOf Veiculo
+	possuiLimiteDeVelocidade ofType _integer
+	
+concept Carro subConceptOf Automovel
+	possuiPortas ofType _integer
+	
+concept Velocimetro
+	velocidadeMaxima ofType _integer
+	mostrador ofType TipoSinal
+concept Buzina
+	sonoridade ofType TipoSinal
+concept TipoSinal
+
+concept VeiculoDuasRodas subConceptOf Veiculo
+
+concept Motocicleta subConceptOf {Automovel, VeiculoDuasRodas}
+
+concept Bicicleta subConceptOf VeiculoDuasRodas
+
+axiom definedBy	
+	// Um Veiculo com um motor é um Automovel
+	?x memberOf Veiculo and ?x[possuiMotor hasValue _boolean("true")] implies ?x memberOf Automovel.
+	
+	// Um Automovel com 4 pneus é um Carro
+	?x memberOf Automovel and ?x[possuiPneus hasValue 4] implies ?x memberOf Carro.
+	
+	// Um Veiculo com 2 pneus é um VeiculoDuasRodas
+	?x memberOf Veiculo and ?x[possuiPneus hasValue 2] implies ?x memberOf VeiculoDuasRodas.
+	
+	// Um VeiculoDuasRodas com motor é uma Motocicleta
+	?x memberOf VeiculoDuasRodas and ?x[possuiMotor hasValue _boolean("true")] 
+		implies ?x memberOf Motocicleta.
+	
+	// Um VeiculoDuasRodas sem motor é uma Bicicleta.
+	?x memberOf VeiculoDuasRodas and ?x[possuiMotor hasValue _boolean("false")] implies ?x memberOf Bicicleta.
+	
+	instance analogico memberOf TipoSinal
+	instance digital memberOf TipoSinal
+	
+	instance corola memberOf Carro
+		possuiPortas hasValue 5
+		possuiLimiteDeVelocidade hasValue 180
+		possuiMotor hasValue _boolean("true")
+		possuiPneus hasValue 4
+		
+	instance moby memberOf Carro
+		possuiPortas hasValue 5
+		possuiLimiteDeVelocidade hasValue 140
+		possuiMotor hasValue _boolean("true")
+		possuiPneus hasValue 4
+		
+	instance veloster
+		possuiPneus hasValue 4
+		possuiPortas hasValue 3
+		possuiLimiteDeVelocidade hasValue 50
+		possuiMotor hasValue _boolean("true")
+	
+	instance caloi memberOf VeiculoDuasRodas
+		possuiMotor hasValue _boolean("false")
